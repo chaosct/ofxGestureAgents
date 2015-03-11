@@ -20,12 +20,19 @@ For a more detailed description of GestureAgents see:
 
 [Julià Carles F, Jordà Sergi (2015) Towards Concurrent Multi-Tasking in Shareable Interfaces (in press). J. Comput. Support. Collab. Work 25](http://mtg.upf.edu/node/3209)
 
-[Julià Carles F (2015) Making Tabletops Useful with Applications, Frameworks and Multi-Tasking. Department of Information and Communication Technologies, pp. 210.](http://mtg.upf.edu/node/3181)
+Chapter 5 of [Julià Carles F (2015) Making Tabletops Useful with Applications, Frameworks and Multi-Tasking. Department of Information and Communication Technologies, pp. 210.](http://mtg.upf.edu/node/3181)
+
+[GestureAgents repository](https://bitbucket.org/chaosct/gesture-agents/)
 
 Current status
 --------------
 
 This is still work on progress, use at your own risk ;)
+
+Addon Dependencies
+------------------
+
+This addon needs [ofxPython](https://github.com/chaosct/ofxPython), as GestureAgents
 
 License
 -------
