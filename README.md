@@ -27,7 +27,7 @@ Chapter 5 of [Julià Carles F (2015) Making Tabletops Useful with Applications, 
 Current status
 --------------
 
-This is still work on progress, use at your own risk ;)
+This is still VERY WORK IN PROGRESS, use at your own risk ;)
 
 Addon Dependencies
 ------------------
