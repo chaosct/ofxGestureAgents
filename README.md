@@ -32,7 +32,7 @@ This is still VERY WORK IN PROGRESS, use at your own risk ;)
 Addon Dependencies
 ------------------
 
-This addon needs [ofxPython](https://github.com/chaosct/ofxPython), as GestureAgents
+This addon needs [ofxPython](https://github.com/chaosct/ofxPython), as GestureAgents is based on Python.
 
 License
 -------
