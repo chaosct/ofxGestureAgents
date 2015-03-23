@@ -30,11 +30,8 @@ void ofApp::draw(){
 
 void ofApp::NewAgentStick(ofxPythonObject & agent)
 {
-	ofxPythonObject registerEvent = python.getObject("registerEvent","ofsystem");
-	ofxPythonCallBackEvent1Arg * cb = new ofxPythonCallBackEvent1Arg(newStick);
-	ofxPythonObject pcb = CallBack2Python(cb);
-	registerEvent(agent.attr("newStick"),pcb);
-	ofAddListener(newStick,this,&ofApp::NewStick);
+	//we are interested on newStick events
+	gestureagents.registerEvent(agent,"newStick",this,&ofApp::NewStick);
 }
 
 

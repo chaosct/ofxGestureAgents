@@ -26,7 +26,6 @@ class ofApp : public ofBaseApp{
 		ofxPythonObject TuioCursorEvents;
 
 		void NewAgentStick(ofxPythonObject&);
-		ofEvent<ofxPythonObject> newStick;
 		void NewStick(ofxPythonObject&);
 
 		ofMesh lines;
