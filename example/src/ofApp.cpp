@@ -12,7 +12,7 @@ void ofApp::setup(){
 	GA_system = python.getObject("ofSystem","ofsystem")(ofxPythonObject::makeTuple() << TuioCursorEvents);
 
 	// registering to RecognizerStick newAgent events
-	gestureagents.registerNewAgent(GA_system,"RecognizerStick","RecognizerStick",this,&ofApp::NewAgentStick);
+	gestureagents.registerNewAgent(GA_system,"RecognizerStick",this,&ofApp::NewAgentStick);
 
 	lines.setMode(OF_PRIMITIVE_LINES);
 

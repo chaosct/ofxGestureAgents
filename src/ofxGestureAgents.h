@@ -26,6 +26,17 @@ public:
 		py_registerNewAgent(GA_system,Recognizer,pcb);
 		ofAddListener(myevent,listener,listenerMethod);
 	}
+
+	template<class ListenerClass>
+	void registerNewAgent(
+		ofxPythonObject GA_system,
+		string recognizer_class, //module is the same as class
+		ListenerClass * listener,
+		void (ListenerClass::*listenerMethod)(ofxPythonObject&))
+	{
+		registerNewAgent(GA_system,recognizer_class,recognizer_class,listener,listenerMethod);
+	}
+	
 protected:
 	map<string,ofEvent<ofxPythonObject> > newagentevents;
 	ofxPython python;
