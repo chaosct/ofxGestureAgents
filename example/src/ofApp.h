@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxPython.h"
+#include "ofxGestureAgents.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,12 +24,12 @@ class ofApp : public ofBaseApp{
 		ofxPythonObject mouse_agent;
 		ofxPythonObject GA_system;
 		ofxPythonObject TuioCursorEvents;
-		ofxPythonObject registerNewAgent;
 
-		ofEvent<ofxPythonObject> newagentStick;
 		void NewAgentStick(ofxPythonObject&);
 		ofEvent<ofxPythonObject> newStick;
 		void NewStick(ofxPythonObject&);
 
 		ofMesh lines;
+
+		ofxGestureAgents gestureagents;
 };
