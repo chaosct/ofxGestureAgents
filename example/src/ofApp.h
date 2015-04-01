@@ -34,7 +34,12 @@ class ofApp : public ofBaseApp{
 		void NewAgentTap(ofxPythonObject&);
 		void NewTap(ofxPythonObject&);
 
+		void NewAgentDoubleTap(ofxPythonObject&);
+		void NewDoubleTap(ofxPythonObject&);
+
+		ofVec2f buttonpos;
 		ofFbo canvas;
+		int buttonradius;
 
 		ofxGestureAgents gestureagents;
 };

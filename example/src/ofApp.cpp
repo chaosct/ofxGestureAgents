@@ -13,17 +13,23 @@ void ofApp::setup(){
 	// registering to RecognizerStick newAgent events
 	gestureagents.registerNewAgent(GA_system,"RecognizerStick",this,&ofApp::NewAgentStick);
 
-	// registering to TuioCursorEvents newAgent events
+	// registering to TuioCursorEvents newAgent events from Tuio module
 	gestureagents.registerNewAgent(GA_system,"Tuio","TuioCursorEvents",this,&ofApp::NewAgentPaint);
 
-	// registering to TuioCursorEvents newAgent events
+	// registering to RecognizerTap newAgent events
 	gestureagents.registerNewAgent(GA_system,"RecognizerTap",this,&ofApp::NewAgentTap);
+
+	// registering to RecognizerDoubleTap newAgent events
+	gestureagents.registerNewAgent(GA_system,"RecognizerDoubleTap",this,&ofApp::NewAgentDoubleTap);
 
 
 	canvas.allocate(ofGetWidth(),ofGetHeight());
 	canvas.begin();
 	ofClear(0);
 	canvas.end();
+
+	buttonpos.set(400, 400);
+	buttonradius = 50;
 
 }
 
@@ -35,6 +41,11 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	canvas.draw(0,0);
+	ofPushStyle();
+	ofNoFill();
+	ofSetLineWidth(3);
+	ofCircle(buttonpos, buttonradius);
+	ofPopStyle();
 }
 
 void ofApp::NewAgentStick(ofxPythonObject & agent)
@@ -97,6 +108,29 @@ void ofApp::NewTap(ofxPythonObject & agent)
 	ofSetColor(0, 100, 200);
 	canvas.begin();
 	ofCircle(pos,15);
+	canvas.end();
+	ofPopStyle();
+}
+
+void ofApp::NewAgentDoubleTap(ofxPythonObject & agent)
+{
+	ofVec3f pos(
+		agent.attr("pos").asVector()[0].asFloat(),
+		agent.attr("pos").asVector()[1].asFloat());
+	if(pos.distance(buttonpos) < buttonradius)
+	{
+		//we are interested on newDoubleTap events inside the button
+		gestureagents.registerEvent(agent,"newDoubleTap",this,&ofApp::NewDoubleTap);
+	}
+}
+
+
+void ofApp::NewDoubleTap(ofxPythonObject & agent)
+{
+	ofPushStyle();
+	ofSetColor(0, 100, 200);
+	canvas.begin();
+	ofClear(0);
 	canvas.end();
 	ofPopStyle();
 }
