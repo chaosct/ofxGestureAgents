@@ -34,7 +34,6 @@ public:
 
 protected:
 	map<string, event_type> events;
-	ofxPython python;
 
 };
 
@@ -49,10 +48,10 @@ void ofxGestureAgents::registerNewAgent(
 	void (ListenerClass::*listenerMethod)(ofxPythonObject&))
 {
 	ofEvent<ofxPythonObject> & myevent = events[recognizer_module+"."+recognizer_class];
-	ofxPythonObject Recognizer = python.getObject(recognizer_class,recognizer_module);
+	ofxPythonObject Recognizer = ofxPython::getObject(recognizer_class,recognizer_module);
 	ofxPythonCallBackEvent1Arg * cb = new ofxPythonCallBackEvent1Arg(myevent);
 	ofxPythonObject pcb = CallBack2Python(cb);
-	ofxPythonObject py_registerNewAgent = python.getObject("registerNewAgent","ofsystem");
+	ofxPythonObject py_registerNewAgent = ofxPython::getObject("registerNewAgent","ofsystem");
 	py_registerNewAgent(GA_system,Recognizer,pcb);
 	ofAddListener(myevent,listener,listenerMethod);
 }
@@ -75,7 +74,7 @@ void ofxGestureAgents::registerEvent(
 	void (ListenerClass::*listenerMethod)(ofxPythonObject&))
 {
 	ofEvent<ofxPythonObject> & myevent = events[agent.attr("__class__").repr()+"."+event];
-	ofxPythonObject py_registerEvent = python.getObject("registerEvent","ofsystem");
+	ofxPythonObject py_registerEvent = ofxPython::getObject("registerEvent","ofsystem");
 	ofxPythonCallBackEvent1Arg * cb = new ofxPythonCallBackEvent1Arg(myevent);
 	ofxPythonObject pcb = CallBack2Python(cb);
 	py_registerEvent(agent.attr(event),pcb);
