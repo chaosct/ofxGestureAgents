@@ -31,6 +31,8 @@ void ofApp::setup(){
 	buttonpos.set(400, 400);
 	buttonradius = 50;
 
+	ofSetWindowTitle("ofxGestureAgents: Painting Example");
+
 }
 
 //--------------------------------------------------------------
@@ -40,11 +42,22 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	ofSetColor(255);
 	canvas.draw(0,0);
 	ofPushStyle();
 	ofNoFill();
 	ofSetLineWidth(3);
 	ofCircle(buttonpos, buttonradius);
+	ofPopStyle();
+
+	ofPushStyle();
+	ofSetColor(0);
+	int n = 1;
+	ofDrawBitmapString("Available gestures:",10,15*n++);
+	ofDrawBitmapString("  Tap",10,15*n++);
+	ofDrawBitmapString("  DoubleTap (inside the circle)",10,15*n++);
+	ofDrawBitmapString("  Stick",10,15*n++);
+	ofDrawBitmapString("  Free Drawing",10,15*n++);
 	ofPopStyle();
 }
 
