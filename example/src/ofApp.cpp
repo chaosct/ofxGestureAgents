@@ -16,6 +16,9 @@ void ofApp::setup(){
 	// registering to TuioCursorEvents newAgent events
 	gestureagents.registerNewAgent(GA_system,"Tuio","TuioCursorEvents",this,&ofApp::NewAgentPaint);
 
+	// registering to TuioCursorEvents newAgent events
+	gestureagents.registerNewAgent(GA_system,"RecognizerTap",this,&ofApp::NewAgentTap);
+
 
 	canvas.allocate(ofGetWidth(),ofGetHeight());
 	canvas.begin();
@@ -77,6 +80,27 @@ void ofApp::NewPaint(ofxPythonObject & agent)
 	canvas.end();
 	ofPopStyle();
 }
+
+void ofApp::NewAgentTap(ofxPythonObject & agent)
+{
+	//we are interested on newTap events
+	gestureagents.registerEvent(agent,"newTap",this,&ofApp::NewTap);
+}
+
+
+void ofApp::NewTap(ofxPythonObject & agent)
+{
+	ofVec3f pos(
+		agent.attr("pos").asVector()[0].asFloat(),
+		agent.attr("pos").asVector()[1].asFloat());
+	ofPushStyle();
+	ofSetColor(0, 100, 200);
+	canvas.begin();
+	ofCircle(pos,15);
+	canvas.end();
+	ofPopStyle();
+}
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

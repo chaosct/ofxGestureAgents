@@ -31,6 +31,9 @@ class ofApp : public ofBaseApp{
 		void NewAgentPaint(ofxPythonObject&);
 		void NewPaint(ofxPythonObject&);
 
+		void NewAgentTap(ofxPythonObject&);
+		void NewTap(ofxPythonObject&);
+
 		ofFbo canvas;
 
 		ofxGestureAgents gestureagents;
