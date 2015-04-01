@@ -2,5 +2,4 @@
 
 ofxGestureAgents::ofxGestureAgents()
 {
-	python.init();
 }
