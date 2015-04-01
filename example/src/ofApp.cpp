@@ -13,6 +13,10 @@ void ofApp::setup(){
 	// registering to RecognizerStick newAgent events
 	gestureagents.registerNewAgent(GA_system,"RecognizerStick",this,&ofApp::NewAgentStick);
 
+	// registering to TuioCursorEvents newAgent events
+	gestureagents.registerNewAgent(GA_system,"Tuio","TuioCursorEvents",this,&ofApp::NewAgentPaint);
+
+
 	canvas.allocate(ofGetWidth(),ofGetHeight());
 	canvas.begin();
 	ofClear(0);
@@ -49,6 +53,27 @@ void ofApp::NewStick(ofxPythonObject & agent)
 	ofSetLineWidth(3);
 	canvas.begin();
 	ofLine(pos1,pos2);
+	canvas.end();
+	ofPopStyle();
+}
+
+
+void ofApp::NewAgentPaint(ofxPythonObject & agent)
+{
+	//we are interested on updateCursor events
+	gestureagents.registerEvent(agent,"updateCursor",this,&ofApp::NewPaint);
+}
+
+
+void ofApp::NewPaint(ofxPythonObject & agent)
+{
+	ofVec3f pos(
+		agent.attr("pos").asVector()[0].asFloat(),
+		agent.attr("pos").asVector()[1].asFloat());
+	ofPushStyle();
+	ofSetColor(255, 100, 100);
+	canvas.begin();
+	ofCircle(pos,10);
 	canvas.end();
 	ofPopStyle();
 }

@@ -28,6 +28,9 @@ class ofApp : public ofBaseApp{
 		void NewAgentStick(ofxPythonObject&);
 		void NewStick(ofxPythonObject&);
 
+		void NewAgentPaint(ofxPythonObject&);
+		void NewPaint(ofxPythonObject&);
+
 		ofFbo canvas;
 
 		ofxGestureAgents gestureagents;
