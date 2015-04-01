@@ -28,7 +28,7 @@ class ofApp : public ofBaseApp{
 		void NewAgentStick(ofxPythonObject&);
 		void NewStick(ofxPythonObject&);
 
-		ofMesh lines;
+		ofFbo canvas;
 
 		ofxGestureAgents gestureagents;
 };

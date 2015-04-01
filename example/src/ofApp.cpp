@@ -13,7 +13,10 @@ void ofApp::setup(){
 	// registering to RecognizerStick newAgent events
 	gestureagents.registerNewAgent(GA_system,"RecognizerStick",this,&ofApp::NewAgentStick);
 
-	lines.setMode(OF_PRIMITIVE_LINES);
+	canvas.allocate(ofGetWidth(),ofGetHeight());
+	canvas.begin();
+	ofClear(0);
+	canvas.end();
 
 }
 
@@ -24,7 +27,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	lines.draw();
+	canvas.draw(0,0);
 }
 
 void ofApp::NewAgentStick(ofxPythonObject & agent)
@@ -42,8 +45,12 @@ void ofApp::NewStick(ofxPythonObject & agent)
 	ofVec3f pos2(
 		agent.attr("pos2").asVector()[0].asFloat(),
 		agent.attr("pos2").asVector()[1].asFloat());
-	lines.addVertex(pos1);
-	lines.addVertex(pos2);
+	ofPushStyle();
+	ofSetLineWidth(3);
+	canvas.begin();
+	ofLine(pos1,pos2);
+	canvas.end();
+	ofPopStyle();
 }
 
 //--------------------------------------------------------------
@@ -99,7 +106,18 @@ void ofApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+	w = ofGetWidth();
+	h = ofGetHeight();
+	if(w > canvas.getWidth() or h > canvas.getHeight())
+	{
+		ofFbo fbo;
+		fbo.allocate(ofGetWidth(),ofGetHeight());
+		fbo.begin();
+		ofClear(0);
+		canvas.draw(0,0);
+		fbo.end();
+		canvas = fbo;
+	}
 }
 
 //--------------------------------------------------------------
